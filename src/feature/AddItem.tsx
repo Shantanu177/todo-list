@@ -12,12 +12,16 @@ const AddItem = () => {
   };
   const addItemTolist = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const payload: IList = {
-      idx: list.size,
-      item: inputVal,
-      completed: false,
-    };
-    addItem(payload);
+    let exists = Array.from(list).some((item) => item.item === inputVal);
+    if (exists) return;
+    else {
+      const payload: IList = {
+        idx: list.size,
+        item: inputVal,
+        completed: false,
+      };
+      addItem(payload);
+    }
   };
   return (
     <form>

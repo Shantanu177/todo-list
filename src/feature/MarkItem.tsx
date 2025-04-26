@@ -17,7 +17,6 @@ const MarkItem = ({ item }: RemoveitemProps) => {
     };
     updateItem(payload);
   };
-  console.log(item);
   return (
     <label className="checkbox-container" onClick={handleRemove}>
       <input type="checkbox" className="hidden" checked={item.completed} />
