@@ -1,8 +1,8 @@
-import type { IList } from './IList';
+import type { IList } from "./IList";
 
 export type TStoreState = {
-  list: IList[];
+  list: Set<IList>;
   addItem: (item: IList) => void;
-  removeItem: (idx: number) => void;
-  updateItem: (updatedItem: IList, idx: number) => void;
+  removeItem: (idx: IList) => void;
+  updateItem: (idx: IList) => void;
 };

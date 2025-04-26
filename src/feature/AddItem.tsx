@@ -1,29 +1,38 @@
-import React, { useState } from 'react'
-import useStore  from '../centralStore';
-import { TStoreState } from '../ITypes/TStoreState';
-import type { IList } from '../ITypes/IList';
+import React, { useState } from "react";
+import useStore from "../centralStore";
+import { TStoreState } from "../ITypes/TStoreState";
+import type { IList } from "../ITypes/IList";
 
 const AddItem = () => {
-    const [inputVal,setInputVal] =useState<string>('')
-    const {addItem , list} = useStore((state : TStoreState  ) => state);
-    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setInputVal(e.currentTarget.value);
-    }
-    const addItemTolist = () =>{
-        const payload :IList={
-            idx: list.length + 2,
-            item: inputVal,
-            completed: false
-        } 
-        addItem(payload);
-    }
+  const [inputVal, setInputVal] = useState<string>("");
+  const { addItem, list } = useStore((state: TStoreState) => state);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInputVal(e.currentTarget.value);
+  };
+  const addItemTolist = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const payload: IList = {
+      idx: list.size,
+      item: inputVal,
+      completed: false,
+    };
+    addItem(payload);
+  };
   return (
-    <div>
-        <input type="text" value={inputVal} onChange={(e) => handleChange(e)} name='todo-item'/>
-        <button onSubmit={addItemTolist}  disabled={!inputVal}>Add to list</button>
-    </div>
-  )
-}
+    <form>
+      <input
+        type="text"
+        value={inputVal}
+        onChange={(e) => handleChange(e)}
+        name="todo-item"
+        className="p-2.5 m-2 border border-gray-300 rounded"
+      />
+      <button type="submit" disabled={!inputVal} onClick={addItemTolist}>
+        Add to list
+      </button>
+    </form>
+  );
+};
 
-export default AddItem
+export default AddItem;
