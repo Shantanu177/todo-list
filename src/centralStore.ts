@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import type { IList } from "./ITypes/IList";
 import type { TStoreState } from "./ITypes/TStoreState";
-import { persist } from "zustand/middleware";
 
 const useStore = create<TStoreState>((set) => ({
   list: new Set(),
